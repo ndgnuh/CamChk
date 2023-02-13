@@ -1,0 +1,14 @@
+tests/notebook/
+modules/helpers/__pycache__/
+__pycache__/
+base/
+images/
+modules/recognizer/weights/
+modules/detector/__pycache__/
+/home/dark_hold/AI/Leon/sycamo/modules/helpers/__pycache__/
+test.png
+image.png
+mattermostname.txt
+cur.png
+tests/notebook/modules/recognizer/weights/embedder/arcfaces_resnet100.onnx
+tests/

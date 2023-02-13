@@ -1,0 +1,209 @@
+controller:
+  key: "val"
+use_track: true
+server_host: "localhost"
+server_port: 8000
+
+models:
+  OnnxFaceEmbedding:
+    weight_path: "modules/recognizer/weights/embedder/arcfaces_resnet100.onnx"
+
+  ScoreClassifier:
+    embedding_threshold: 0.4
+    different_threshold: 0.1
+    distance: cosine_similarity
+
+# tracker: "deepsort"
+
+
+model:
+  tracker: "sort"
+  processing:
+    use_save: true
+    use_mask: false
+    path_data:  /home/dark_hold/Data/Data_Grooo
+
+  MaskTheFace:
+    path_masked: /home/dark_hold/Data/Data_Grooo
+    video: 0
+    use_mask: true
+    path_dlib_model: "./modules/camera/model/MaskTheFace/dlib_models/shape_predictor_68_face_landmarks.dat"
+    config_filename: "./modules/camera/model/MaskTheFace/masks/masks.cfg"
+    display: "./modules/camera/model/MaskTheFace/utils/display.txt"
+    mask_type: "N95"
+    pattern: ""
+    pattern_weight: 0.5
+    color: "#0473e2"
+    color_weight: 0.5
+    code: ""
+    verbose: true
+    write_original_image: true
+
+  yolov5:
+    use_pre_trained: true
+    model_path: "model/weights/yolov5/yolov5s-head-detection.pt"
+    confidence_threshold: 0.5
+    show_bbox: false
+
+  DEEPSORT:
+    MODEL_WEIGHT: "modules/camera/weights/deep_sort/osnet_ain_ms_d_c.pth.tar"
+    MODEL_TYPE: "osnet_ain_x1_0"
+    MAX_DIST: 0.2 # The matching threshold. Samples with larger distance are considered an invalid match
+    MIN_CONFIDENCE: 0.5 # Minimum class confidence to consider
+    MAX_IOU_DISTANCE: 0.7 # Gating threshold. Associations with cost larger than this value are disregarded.
+    MAX_AGE: 30 # Maximum number of missed misses before a track is deleted
+    N_INIT: 3 # Number of frames that a track remains in initialization phase
+    NN_BUDGET: 100 # Maximum size of the appearance descriptors gallery
+
+  detection:
+    output_size: "112x112"
+    # Model name. Available models:
+    # - retinafaces_r50
+    # - mobilenet
+    model_name: "mobilenet"
+    # Retinafaces Configuration
+    retinafaces_r50:
+      show_bbox: false
+      show_confidence: false
+      show_landmarks: false
+
+      backbone: "resnet50"
+      model_path: "modules/camera/weights/detection/retinafaces/retinafaces_r50.pth"
+      cpu: false
+      confidence_threshold: 0.9
+      top_k: 5000
+      nms_threshold: 0.4
+      keep_top_k: 750
+    mobilenet:
+      model_path: "modules/camera/weights/detection/retinafaces/mobilenet0.25_Final.pth"
+      show_bbox: false
+      show_confidence: false
+      show_landmarks: false
+      vis_thres: 0.7
+      backbone: "mobile0.25"
+      cpu: false
+      confidence_threshold: 0.9
+      top_k: 5000
+      nms_threshold: 0.5
+      keep_top_k: 750
+    dnn:
+      show_bbox: true
+      show_confidence: true
+      show_landmarks: false
+      confidence_threshold: 0.9
+      modelFile: "modules/camera/weights/detection/dnn/res10_300x300_ssd_iter_140000.caffemodel"
+      configFile: "modules/camera/weights/detection/dnn/deploy.prototxt.txt"
+
+  # Embedder configuration
+
+embedder:
+  model_name: "onnx_runtime"
+  weightPath: "modules/recognizer/weights/embedder/arcfaces_resnet100.onnx"
+  fallbackUrl: "10.10.1.15:60000/arcfaces_resnet100.onnx"
+
+scoreclassifier:
+    embedding_threshold: 0.4
+    different_threshold: 0.1
+  # fc:
+  #   input_size: 512
+  #   hidden_size:
+  #   output_size: 33
+  #   data_train: model/weights/recognition/fc/train.npz
+  #   model_path: "model/weights/recognition/fc/fc.pt"
+  #   label_path: "model/weights/recognition/fc/label2id.pkl"
+# pipelines:
+#   recognition:
+#     name: 'voting'
+#     config:
+#       type: soft
+#       models:
+#         model1:
+#           - embedder
+#           - fc
+
+#         model2:
+#           - embedder
+#           - score
+
+camera:
+  # cam1:
+  #   cut: "true"
+  #   resolution: "640x480"
+  #   fps: 30
+
+  #   # Authenticated Info
+  #   method: "rtsp"
+  #   # url: "rtsp://admin:Grooo123@10.10.10.250:554/Streaming/Channels/1"
+  #   url: "/media/huy/DATA/Huy/git/moniter-camera-system_test/output250.mp4"
+  #   static_path: static
+  #   image_folder: images
+
+  #   x_cut: 300
+  #   y_cut: 200
+
+  cam2:
+    cut: true
+    resolution: "640x480"
+    fps: 30
+
+    # Authenticated Info
+    method: "rtsp"
+    url: "rtsp://admin:Grooo123@10.10.1.29:554/Streaming/Channels/1"
+    # url: "/media/huy/DATA/Huy/git/moniter-camera-system_test/output_010622.mp4"
+
+    static_path: static
+    image_folder: images
+    x_cut: 850
+    y_cut: 200
+
+  # cam3:
+  #   cut: false
+  #   resolution: "640x480"
+  #   fps: 30
+
+  #   # Authenticated Info
+  #   url: 0
+  #   url: "D:/Huy/git/moniter-camera-system_test/output249.mp4"
+  #   x_cut: 850
+  #   y_cut: 200
+
+  #   directions:
+  #     - label: Di vao
+  #       rule: '1**'
+  #     - label: Di ra
+  #       rule: '2**'
+  #     - label: Ha tho
+  #       rule: '02*'
+  #     - label: Len troi
+  #       rule: '01*'
+
+  #   static_path: static
+  #   image_folder: images
+
+#   cam4:
+#     resolution: "640x480"
+#     fps: 30
+
+#     # Authenticated Info
+#     url: "/dev/video1"
+
+#     static_path: static
+#     image_folder: images
+
+api:
+  cors:
+    origin: "*"
+    allow_headers: "*"
+    allow_methods: "*"
+    allow_credentials: "true"
+    max_age: "3600"
+  host: 0.0.0.0
+  port: 8080
+
+  data_storage:
+    image_directory: static/images
+    ignore_threshold: 1 #seconds
+
+database:
+  database_path: "sqlite:///controller/database/log.db"
+  check_same_thread: false
