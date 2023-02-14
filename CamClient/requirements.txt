@@ -1,0 +1,4 @@
+git+https://github.com/ndgnuh/retinaface_detector
+pyyaml
+opencv-python
+onnxruntime
