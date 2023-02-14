@@ -16,9 +16,9 @@ db.bind(provider='sqlite', filename=database_file, create_db=True)
 
 class Record(db.Entity):
     ID = orm.PrimaryKey(int, auto=True)
-    img = orm.Required(str)  # cru
+    img = orm.Required(str)
     insert_time = orm.Required(datetime, default=datetime.now)
-    capture_time = orm.Required(datetime)  # cru
+    capture_time = orm.Required(datetime)
     flag = orm.Required(bool, default=False)
     details = orm.Set("Record_detail")
 
@@ -49,7 +49,7 @@ db.generate_mapping(check_tables=True, create_tables=True)
 def store_record(img, timestamp):
 
     r = Record(img=img, capture_time=datetime.fromtimestamp(timestamp))
-    Record_detail(record =r)
+    Record_detail(record=r)
     orm.commit()
 
 
