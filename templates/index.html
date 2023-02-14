@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+    <h1 style="text-align: center;">Live attendance app</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ url_for('video') }}" width="100%"/>
+            </div>
+            <div class="col-md-6">
+                <!-- <p>ahihi</p> -->
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Feed from Camera</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Staff</th>
+                                        <th>Logged Time</th>
+                                        <th>Snapshot</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="feed-table"></tbody>
+                                <!-- <tfoot>
+                                    <tr>
+                                        <th>Staff</th>
+                                        <th>Logged Time</th>
+                                        <th>Snapshot</th>
+                                        <th>Direction</th>
+                                    </tr>
+                                </tfoot> -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+        
+    </div>
+</body>
+</html>

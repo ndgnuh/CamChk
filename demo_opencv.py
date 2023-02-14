@@ -14,7 +14,8 @@ from modules.controller.recognizerController import recognize
 detector_ = FaceDetector(keep_top_k =750)
 # define a video capture object
 config = read_config('./config/config.yml')
-vid = cv2.VideoCapture(config["camera"]["cam2"]["url"])
+# vid = cv2.VideoCapture(config["camera"]["cam2"]["url"])
+vid = cv2.VideoCapture(0)
 
 
 rec = recognize(config)

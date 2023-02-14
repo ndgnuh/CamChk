@@ -102,44 +102,14 @@ embedder:
   fallbackUrl: "10.10.1.15:60000/arcfaces_resnet100.onnx"
 
 scoreclassifier:
-    embedding_threshold: 0.4
+    embedding_threshold: 0.6
     different_threshold: 0.1
-  # fc:
-  #   input_size: 512
-  #   hidden_size:
-  #   output_size: 33
-  #   data_train: model/weights/recognition/fc/train.npz
-  #   model_path: "model/weights/recognition/fc/fc.pt"
-  #   label_path: "model/weights/recognition/fc/label2id.pkl"
-# pipelines:
-#   recognition:
-#     name: 'voting'
-#     config:
-#       type: soft
-#       models:
-#         model1:
-#           - embedder
-#           - fc
 
-#         model2:
-#           - embedder
-#           - score
+
+streamming:
+  max_frame : 16
 
 camera:
-  # cam1:
-  #   cut: "true"
-  #   resolution: "640x480"
-  #   fps: 30
-
-  #   # Authenticated Info
-  #   method: "rtsp"
-  #   # url: "rtsp://admin:Grooo123@10.10.10.250:554/Streaming/Channels/1"
-  #   url: "/media/huy/DATA/Huy/git/moniter-camera-system_test/output250.mp4"
-  #   static_path: static
-  #   image_folder: images
-
-  #   x_cut: 300
-  #   y_cut: 200
 
   cam2:
     cut: true
@@ -156,39 +126,7 @@ camera:
     x_cut: 850
     y_cut: 200
 
-  # cam3:
-  #   cut: false
-  #   resolution: "640x480"
-  #   fps: 30
-
-  #   # Authenticated Info
-  #   url: 0
-  #   url: "D:/Huy/git/moniter-camera-system_test/output249.mp4"
-  #   x_cut: 850
-  #   y_cut: 200
-
-  #   directions:
-  #     - label: Di vao
-  #       rule: '1**'
-  #     - label: Di ra
-  #       rule: '2**'
-  #     - label: Ha tho
-  #       rule: '02*'
-  #     - label: Len troi
-  #       rule: '01*'
-
-  #   static_path: static
-  #   image_folder: images
-
-#   cam4:
-#     resolution: "640x480"
-#     fps: 30
-
-#     # Authenticated Info
-#     url: "/dev/video1"
-
-#     static_path: static
-#     image_folder: images
+  
 
 api:
   cors:

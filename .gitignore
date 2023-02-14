@@ -12,3 +12,7 @@ mattermostname.txt
 cur.png
 tests/notebook/modules/recognizer/weights/embedder/arcfaces_resnet100.onnx
 tests/
+key.pem
+cert.pem
+*.jpg
+modules/database/cam.sqlite
