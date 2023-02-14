@@ -1,0 +1,6 @@
+pony
+fastapi[standard]
+python-multipart
+uvicorn
+gdown
+onnxruntime
